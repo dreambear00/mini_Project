@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="rec_style.css">
+    <link rel="stylesheet" href="reset.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+</head>
+
+<body>
+    <header id="head">
+        <h1>맞춤형 게임 추천</h1>
+    </header>
+    <div class="wrap">
+    <div class="container">
+        <div id="firstQ" class="question_content">
+            <h2 class="question">Q1. 누구와 있나요?</h2>
+            <p class="answer">연인과 함께</p>
+            <p class="answer">가족과 함께</p>
+            <p class="answer">친구와 함께</p>
+            <p class="answer">학생들과 함께</p>
+            <p class="answer">처음 만나는 사람들과 함께</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="secondQ" class="question_content">
+            <h2 class="question">Q2. 게임을 하기위한 목적이 무엇인가요?</h2>
+            <p class="answer">아이스 브레이킹</p>
+            <p class="answer">연인과 교감</p>
+            <p class="answer">가정의 화목</p>
+            <p class="answer">공포 체험</p>
+        </div>
+    </div>
+
+    <div class="container toggle">
+        <div id="thirdQ" class="question_content">
+            <h2 class="question">Q3. 어떤 분위기가 좋으신가요??</h2>
+            <p class="answer">시끄럽게</p>
+            <p class="answer">즐겁게</p>
+            <P class="answer">조용하게</P>
+        </div>
+    </div>
+    
+    <div class="container toggle">
+        <div id="fourthQ" class="question_content">
+            <h2 class="question">Q4. 게임을 하는 장소는 어디인가요?</h2>
+            <p class="answer">가정집</p>
+            <p class="answer">워크샵</p>
+            <P class="answer">술자리</P>
+            <P class="answer">학교/학원</P>
+        </div>
+    </div>
+</div>
+    <script>
+        localStorage.setItem("people", 0);
+        localStorage.setItem("atmosphere", 0);
+        localStorage.setItem("frendly", 0);
+        localStorage.setItem("horor", 0);
+        localStorage.setItem("alchole", 0);
+        $('.container').hide();
+        $('.container:first').show()
+        let [n1, n2, n3, n4, n5] = [0,0,0,0,0];
+        $('.answer').on('click', function() {
+            console.log($(this).text());
+            if($(this).closest('div').attr('id') == 'firstQ'){
+                if($(this).text() == "연인과 함께") {
+                    n1 += 1;
+                    n2 += 2;
+                    n3 += 3;
+                } else if($(this).text() == "가족과 함께"){
+                    n1 += 2;
+                    n2 += 3;
+                    n3 += 4;
+                } else if($(this).text() == "친구와 함께"){
+                    n1 += 3;
+                    n2 += 2;
+                    n3 += 3;
+                } else if($(this).text() == "학생들과 함께"){
+                    n1 += 4;
+                    n2 += 1;
+                    n3 += 2;
+                } else if($(this).text() == "처음 만나는 사람들과 함께"){
+                    n1 += 4;
+                    n2 += 4;
+                    n3 += 1;
+                }
+                $('#firstQ').hide();
+                $('.container:nth-child(2)').fadeIn(500);
+            }
+            if($(this).closest('div').attr('id') == 'secondQ'){
+                if($(this).text() == "아이스 브레이킹") {
+                    n1 += 4;
+                    n2 += 3;
+                    n3 += 1;
+                } else if($(this).text() == "연인과 교감"){
+                    n1 += 1;
+                    n2 += 3;
+                    n3 += 4;
+                } else if($(this).text() == "가정의 화목"){
+                    n1 += 2;
+                    n2 += 2;
+                    n3 += 3;
+                } else if($(this).text() == "공포 체험"){
+                    n4 += 100;
+                }
+                $('#secondQ').hide();
+                $('.container:nth-child(3)').fadeIn(500);
+            }
+            if($(this).closest('div').attr('id') == 'thirdQ'){
+                if($(this).text() == "시끄럽게") {
+                    n1 += 4;
+                    n2 += 5;
+                    n3 += 2;
+                } else if($(this).text() == "즐겁게"){
+                    n1 += 3;
+                    n2 += 4;
+                    n3 += 3;
+                } else if($(this).text() == "조용하게"){
+                    n1 += 1;
+                    n2 += 2;
+                    n3 += 4;
+                } 
+                $('#thirdQ').hide();
+                $('.container:nth-child(4)').fadeIn(500);
+            }
+            if($(this).closest('div').attr('id') == 'fourthQ'){
+                if($(this).text() == "가정집") {
+                    n1 += 2;
+                    n2 += 2;
+                    n3 += 4;
+                } else if($(this).text() == "워크샵"){
+                    n1 += 5;
+                    n2 += 3;
+                    n3 += 2;
+                } else if($(this).text() == "술자리"){
+                    n5 += 100;
+                } else if($(this).text() == "학교/학원"){
+                    n1 += 4;
+                    n2 += 3;
+                    n3 += 3;
+                }
+                localStorage.setItem("people", n1);
+                localStorage.setItem("atmosphere", n2);
+                localStorage.setItem("frendly", n3);
+                localStorage.setItem("horor", n4);
+                localStorage.setItem("alchole", n5);
+                console.log(n1, localStorage.getItem("people"));
+                location.replace('resultView.html')
+            }
+        })
+
+        // q1 = document.getElementById("firstQ")
+        // q2 = document.getElementById("secondQ")
+        // q3 = document.getElementById("thirdQ")
+
+        // const valueIncrease = (num1, num2, num3) => {
+        //     localStorage.setItem("people", `${parseInt(localStorage.getItem("people")) + num1}`)
+        //     localStorage.setItem("atmosphere", `${parseInt(localStorage.getItem("atmosphere")) + num2}`)
+        //     localStorage.setItem("frendly", `${parseInt(localStorage.getItem("frendly")) + num3}`)
+        // }
+        // const q1Result = (num1, num2, num3) => {
+        //     valueIncrease(num1, num2, num3);
+
+        //     q1.style.display = "none"
+        //     q2.style.display = "block"
+        // }
+
+        // const testdown = () => {
+
+        //     q1Result(1, 5, 4);
+        // }
+        // const testdown2 = () => {
+        //     q1Result(2, 4, 4);
+        // }
+        // const testdown3 = () => {
+        //     q1Result(2, 3, 5);
+        // }
+        // const testdown4 = () => {
+        //     q1Result(3, 4, 3);
+        // }
+        // const testdown5 = () => {
+        //     q1Result(5, 2, 3);
+        // }
+
+        // const q2result = (num1, num2, num3) => {
+        //     valueIncrease(num1, num2, num3);
+        //     q2.style.display = "none"
+        //     q3.style.display = "block"
+        // }
+        // const testdown21 = () => {
+        //     q2result(4, 4, 2);
+        // }
+        // const testdown22 = () => {
+        //     q2result(2, 4, 4);
+        // }
+
+        // const q3result = (num1, num2, num3) => {
+        //     valueIncrease(num1, num2, num3);
+        //     location.replace("./resultView.html")
+        // }
+
+        // const testdown31 = () =>{
+        //     q3result(1 ,1, 1);
+        // }
+
+        // const testdown32 = () => {
+        //     q3result(1, 1, 1);
+        // }
+
+        // const testdown33 = () => {
+        //     q3result(1, 1, 1);
+        // }
+    </script>
+</body>
+
+</html>

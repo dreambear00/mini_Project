@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recreation Recommendation</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 모달 창 -->
+    <div id="modal_background"></div>
+    <div id="modal">
+            <button id="exit" onclick="exit_btn()">X</button>
+            <div class="modal_contents">
+                <h3>닉네임을 입력하세요</h3>
+                <input id="inputNm" type="text">
+                <div id="container">
+                    <h3>성별을 선택해주세요</h3>
+                    남자<input class="chk_box" type="radio" name="gender">
+                    여자<input class="chk_box" type="radio" name="gender">
+                    <h3>연령대를 선택해주세요</h3>
+                    20대<input class="chk_box" type="radio" name="age">
+                    30대<input class="chk_box" type="radio" name="age">
+                    40대 이상<input class="chk_box" type="radio" name="age">
+                </div>
+                <button id="reg2" onclick="reg_btn()">등록</button>
+            </div>
+        </div>
+    <header>
+        <img id="logo" src="./img/logo.png" alt="logo"><br>
+        <button id="reg" onclick="modal_btn()">사용자 등록</button>
+    </header>
+    <div id="section_area">
+        <a href="find_game.html">
+            <div id="btn3" class="btn_effects"><h6>인기 게임 추천</h6></div>
+        </a>
+        <a href="rec_game.html">
+            <div id="btn4" class="btn_effects"><h6>맞춤형 게임 추천</h6></div>
+        </a>
+            <!-- 짤 -->
+            <div id="btn1" class="btn"></div>
+            <div id="btn2" class="btn"></div>
+    </div>
+
+    <script src="effect.js"></script>
+</body>
+
+</html> 
